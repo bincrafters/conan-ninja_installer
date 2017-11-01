@@ -4,7 +4,6 @@
 from conans import ConanFile, tools
 import os
 import platform
-import stat
 
 
 class NinjaConan(ConanFile):
@@ -35,7 +34,5 @@ class NinjaConan(ConanFile):
         # ensure ninja is executable
         if os.name == 'posix':
             name = os.path.join(bin_path, 'ninja')
-            mode = os.stat(name).st_mode
-            mode |= stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH
-            os.chmod(name, stat.S_IMODE(mode))
+            os.chmod(name, os.stat(name).st_mode | 0o111)
         self.env_info.path.append(bin_path)
