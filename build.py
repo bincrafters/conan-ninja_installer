@@ -10,6 +10,7 @@ if __name__ == "__main__":
 
     if reponame_t or reponame_a:
         username, repo = reponame_a.split("/") if reponame_a else reponame_t.split("/")
+        username = 'bincrafters'
         channel, version = repobranch_a.split("/") if repobranch_a else repobranch_t.split("/")
 
         with open("conanfile.py", "r") as conanfile:
