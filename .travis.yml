@@ -10,7 +10,6 @@ osx: &osx
    language: generic
 matrix:
    include:
-
       - <<: *linux
       - <<: *osx
 
