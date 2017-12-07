@@ -1,6 +1,6 @@
-[ ![Download](https://api.bintray.com/packages/bincrafters/public-conan/ninja_installer%3Abincrafters/images/download.svg?version=1.8.2%3Astable) ](https://bintray.com/bincrafters/public-conan/ninja_installer%3Abincrafters/1.8.2%3Astable/link)
-[![Build Status](https://travis-ci.org/SSE4/conan-ninja_installer.svg?branch=testing%2F1.8.2)](https://travis-ci.org/SSE4/conan-ninja_installer)
-[![Build status](https://ci.appveyor.com/api/projects/status/8tvdx6t4mp2iod3u?svg=true)](https://ci.appveyor.com/project/SSE4/conan-ninja-installer)
+[![Download](https://api.bintray.com/packages/bincrafters/public-conan/ninja_installer%3Abincrafters/images/download.svg)](https://bintray.com/bincrafters/public-conan/ninja_installer%3Abincrafters/_latestVersion)
+[![Build Status](https://travis-ci.org/bincrafters/conan-ninja_installer.svg?branch=stable%2F1.8.2)](https://travis-ci.org/bincrafters/conan-ninja_installer)
+[![Build status](https://ci.appveyor.com/api/projects/status/lkp2aq858uloajlh?svg=true)](https://ci.appveyor.com/project/BinCrafters/conan-ninja-installer)
 
 Ninja is a small build system with a focus on speed
 
