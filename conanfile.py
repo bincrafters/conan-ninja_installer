@@ -10,6 +10,7 @@ class NinjaConan(ConanFile):
     name = "ninja_installer"
     version = "1.8.2"
     license = "Apache 2.0"
+    export = ["LICENSE.md"]
     description = "Ninja is a small build system with a focus on speed"
     url = "https://github.com/SSE4/conan-ninja_installer"
     no_copy_source = True
