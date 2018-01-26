@@ -3,7 +3,6 @@
 
 from conans import ConanFile, tools
 import os
-import platform
 
 
 class NinjaConan(ConanFile):
@@ -14,26 +13,22 @@ class NinjaConan(ConanFile):
     description = "Ninja is a small build system with a focus on speed"
     url = "https://github.com/SSE4/conan-ninja_installer"
     no_copy_source = True
+    settings = 'os_build'
 
     def build(self):
-        for _platform in ["win", "linux", "mac"]:
-            os.makedirs(_platform)
-            with tools.chdir(_platform):
-                archive_name = "ninja-%s.zip" % _platform
-                url = "https://github.com/ninja-build/ninja/releases/download/v%s/%s" % (self.version, archive_name)
-                tools.download(url, archive_name, verify=True)
-                tools.unzip(archive_name)
-                os.unlink(archive_name)
+        platform_name = {"Windows": "win", "Linux": "linux", "Macosx": "mac"}.get(str(self.settings.os_build))
+        archive_name = "ninja-%s.zip" % platform_name
+        url = "https://github.com/ninja-build/ninja/releases/download/v%s/%s" % (self.version, archive_name)
+        tools.download(url, archive_name, verify=True)
+        tools.unzip(archive_name)
+        os.unlink(archive_name)
 
     def package(self):
-        for _platform in ["win", "linux", "mac"]:
-            self.copy(pattern="ninja*", dst=_platform, src=_platform)
+        self.copy(pattern="ninja*", dst='bin', src='.')
 
     def package_info(self):
-        _platform = {'Darwin': 'mac', 'Linux': 'linux', 'Windows': 'win'}.get(platform.system())
-        bin_path = os.path.join(self.package_folder, _platform)
         # ensure ninja is executable
-        if os.name == 'posix':
-            name = os.path.join(bin_path, 'ninja')
+        if str(self.settings.os_build) in ['Linux', 'Macosx']:
+            name = 'ninja'
             os.chmod(name, os.stat(name).st_mode | 0o111)
-        self.env_info.path.append(bin_path)
+        self.env_info.PATH.append(os.path.join(self.package_folder, 'bin'))
