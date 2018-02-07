@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from conans import ConanFile, tools
+from conans import ConanFile, tools, AutoToolsBuildEnvironment
 import os
 
 
@@ -11,20 +11,32 @@ class NinjaConan(ConanFile):
     license = "Apache 2.0"
     export = ["LICENSE.md"]
     description = "Ninja is a small build system with a focus on speed"
-    url = "https://github.com/SSE4/conan-ninja_installer"
-    no_copy_source = True
-    settings = 'os_build'
+    url = "https://github.com/bincrafters/conan-ninja_installer"
+    settings = {'os_build': ['Windows', 'Linux', 'Macos'], 'arch_build': ['x86', 'x86_64']}
+
+    def build_vs(self):
+        raise Exception('TODO')
+
+    def build_configure(self):
+        with tools.chdir('sources'):
+            env_build = AutoToolsBuildEnvironment(self)
+            with tools.environment_append(env_build.vars):
+                self.run('./configure.py --bootstrap')
+
+    def source(self):
+        archive_name = "v%s.tar.gz" % self.version
+        url = "https://github.com/ninja-build/ninja/archive/%s" % archive_name
+        tools.get(url)
+        os.rename('ninja-%s' % self.version, 'sources')
 
     def build(self):
-        platform_name = {"Windows": "win", "Linux": "linux", "Macosx": "mac"}.get(str(self.settings.os_build))
-        archive_name = "ninja-%s.zip" % platform_name
-        url = "https://github.com/ninja-build/ninja/releases/download/v%s/%s" % (self.version, archive_name)
-        tools.download(url, archive_name, verify=True)
-        tools.unzip(archive_name)
-        os.unlink(archive_name)
+        if self.settings.os_build == 'Windows':
+            self.build_vs()
+        else:
+            self.build_configure()
 
     def package(self):
-        self.copy(pattern="ninja*", dst='bin', src='.')
+        self.copy(pattern="ninja*", dst='bin', src='sources')
 
     def package_info(self):
         # ensure ninja is executable
