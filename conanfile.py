@@ -12,10 +12,12 @@ class NinjaConan(ConanFile):
     export = ["LICENSE.md"]
     description = "Ninja is a small build system with a focus on speed"
     url = "https://github.com/bincrafters/conan-ninja_installer"
-    settings = {'os_build': ['Windows', 'Linux', 'Macos'], 'arch_build': ['x86', 'x86_64']}
+    settings = {'os_build': ['Windows', 'Linux', 'Macos'], 'arch_build': ['x86', 'x86_64'], 'compiler': None}
 
     def build_vs(self):
-        raise Exception('TODO')
+        with tools.chdir('sources'):
+            with tools.vcvars(self.settings, filter_known_paths=False):
+                self.run('python configure.py --bootstrap')
 
     def build_configure(self):
         with tools.chdir('sources'):
@@ -44,3 +46,6 @@ class NinjaConan(ConanFile):
             name = os.path.join(self.package_folder, 'bin', 'ninja')
             os.chmod(name, os.stat(name).st_mode | 0o111)
         self.env_info.PATH.append(os.path.join(self.package_folder, 'bin'))
+
+    def package_id(self):
+        self.info.settings.compiler = 'Any'
