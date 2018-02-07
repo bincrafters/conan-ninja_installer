@@ -21,6 +21,12 @@ class NinjaConan(ConanFile):
 
     def build_configure(self):
         with tools.chdir('sources'):
+            cxx = os.environ.get('CXX', 'g++')
+            if self.settings.arch_build == 'x86':
+                cxx += ' -m32'
+            elif self.settings.arch_build == 'x86_64':
+                cxx += ' -m64'
+            os.environ['CXX'] = cxx
             env_build = AutoToolsBuildEnvironment(self)
             with tools.environment_append(env_build.vars):
                 self.run('./configure.py --bootstrap')
