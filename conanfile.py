@@ -29,6 +29,6 @@ class NinjaConan(ConanFile):
     def package_info(self):
         # ensure ninja is executable
         if str(self.settings.os_build) in ['Linux', 'Macosx']:
-            name = 'ninja'
+            name = os.path.join(self.package_folder, 'bin', 'ninja')
             os.chmod(name, os.stat(name).st_mode | 0o111)
         self.env_info.PATH.append(os.path.join(self.package_folder, 'bin'))
