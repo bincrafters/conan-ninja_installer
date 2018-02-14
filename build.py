@@ -4,11 +4,11 @@
 
 from bincrafters import build_template_installer
 from bincrafters import build_shared
-
+import os
 
 if __name__ == "__main__":
 
+    arch = os.environ["CONAN_ARCHS"]
     builder = build_template_installer.get_builder()
-    builder.add({"os" : build_shared.get_os(), "arch_build" : "x86"}, {}, {}, {})
-    builder.add({"os" : build_shared.get_os(), "arch_build" : "x86_64"}, {}, {}, {})
+    builder.add({"os" : build_shared.get_os(), "arch_build" : arch}, {}, {}, {})
     builder.run()
