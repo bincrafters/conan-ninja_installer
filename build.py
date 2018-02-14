@@ -2,15 +2,13 @@
 # -*- coding: utf-8 -*-
 
 
-from bincrafters import build_template_default
+from bincrafters import build_template_installer
+from bincrafters import build_shared
+
 
 if __name__ == "__main__":
 
-    filtered_builds = []
-    builder = build_template_default.get_builder()
-    for settings, options, env_vars, build_requires, reference in builder.items:
-        settings["arch_build"] = settings["arch"]
-        del settings["arch"]
-    filtered_builds.append([settings, options, env_vars, build_requires])
-    builder.builds = filtered_builds
+    builder = build_template_installer.get_builder()
+    builder.add({"os" : build_shared.get_os(), "arch" : "x86"}, {}, {}, {})
+    builder.add({"os" : build_shared.get_os(), "arch" : "x86_64"}, {}, {}, {})
     builder.run()
