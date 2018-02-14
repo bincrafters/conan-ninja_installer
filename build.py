@@ -8,7 +8,7 @@ import os
 
 if __name__ == "__main__":
 
-    arch = os.environ["CONAN_ARCHS"]
+    arch = os.environ["ARCH"]
     builder = build_template_installer.get_builder()
     builder.add({"os" : build_shared.get_os(), "arch_build" : arch}, {}, {}, {})
     builder.run()
