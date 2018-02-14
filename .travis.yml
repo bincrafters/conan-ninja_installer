@@ -11,7 +11,7 @@ osx: &osx
 matrix:
    include:
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=bincrafters/docker-centos-gcc48 CONAN_ARCHS=x86 CONAN_DOCKER_32_IMAGES
+        env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=bincrafters/docker-centos-gcc48-i386 CONAN_ARCHS=x86 CONAN_DOCKER_32_IMAGES
       - <<: *linux
         env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=bincrafters/docker-centos-gcc48 CONAN_ARCH=x86_64
       - <<: *osx
