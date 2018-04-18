@@ -52,6 +52,7 @@ class NinjaConan(ConanFile):
             name = os.path.join(self.package_folder, 'bin', 'ninja')
             os.chmod(name, os.stat(name).st_mode | 0o111)
         self.env_info.PATH.append(os.path.join(self.package_folder, 'bin'))
+        self.env_info.CONAN_CMAKE_GENERATOR = 'Ninja'
 
     def package_id(self):
         self.info.settings.compiler = 'Any'
