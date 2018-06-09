@@ -14,6 +14,10 @@ class NinjaConan(ConanFile):
     url = "https://github.com/bincrafters/conan-ninja_installer"
     settings = {'os_build': ['Windows', 'Linux', 'Macos'], 'arch_build': ['x86', 'x86_64'], 'compiler': None}
 
+    def requirements(self):
+        if self.settings.os_build == 'Linux':
+            self.requires.add('glibc_version_header/0.1@bincrafters/stable')
+
     def build_vs(self):
         with tools.chdir('sources'):
             with tools.vcvars(self.settings, filter_known_paths=False):
