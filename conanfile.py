@@ -40,7 +40,7 @@ class NinjaConan(ConanFile):
 
     def requirements(self):
         if self.settings.os_build == 'Linux':
-            self.requires.add('glibc_version_header/0.1.0@bincrafters/stable')
+            self.requires.add('glibc_version_header/0.1@bincrafters/stable')
 
     def source(self):
         archive_name = "v%s.tar.gz" % self.version
