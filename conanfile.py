@@ -38,6 +38,10 @@ class NinjaConan(ConanFile):
             with tools.environment_append(env_build.vars):
                 self.run("python configure.py --bootstrap")
 
+    def requirements(self):
+        if self.settings.os_build == 'Linux':
+            self.requires.add('glibc_version_header/0.1.0@bincrafters/stable')
+
     def source(self):
         archive_name = "v%s.tar.gz" % self.version
         tools.get("%s/archive/%s" % (self.homepage, archive_name))
