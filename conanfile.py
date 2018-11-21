@@ -46,7 +46,7 @@ class NinjaConan(ConanFile):
 
     def source(self):
         # intentionally not using source method to avoid caching
-        tag = "%s.g81279.kitware.dyndep-1.jobserver-1" % self.version
+        tag = "1.8.2.g81279.kitware.dyndep-1.jobserver-1"
         url = "https://github.com/Kitware/ninja"
         archive_name = "v%s.tar.gz" % tag
         tools.get("%s/archive/%s" % (url, archive_name))
