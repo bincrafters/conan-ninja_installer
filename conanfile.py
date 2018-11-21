@@ -19,8 +19,6 @@ class NinjaConan(ConanFile):
         "arch_build": ["x86", "x86_64"],
         "compiler": None
     }
-    options = {"distribution": ["official", "kitware"]}
-    default_options = {"distribution": "official"}
     _source_subfolder = "source_subfolder"
 
     def _build_vs(self):
@@ -46,20 +44,15 @@ class NinjaConan(ConanFile):
         if self.settings.os_build == 'Linux':
             self.build_requires('glibc_version_header/0.1@bincrafters/stable')
 
-    def _get_source(self):
+    def source(self):
         # intentionally not using source method to avoid caching
-        if self.options.distribution == "kitware":
-            tag = "%s.g81279.kitware.dyndep-1.jobserver-1" % self.version
-            url = "https://github.com/Kitware/ninja"
-        else:
-            tag = self.version
-            url = self.homepage
+        tag = "%s.g81279.kitware.dyndep-1.jobserver-1" % self.version
+        url = "https://github.com/Kitware/ninja"
         archive_name = "v%s.tar.gz" % tag
         tools.get("%s/archive/%s" % (url, archive_name))
         os.rename("ninja-%s" % tag, self._source_subfolder)
 
     def build(self):
-        self._get_source()
         if self.settings.os_build == "Windows":
             self._build_vs()
         else:
