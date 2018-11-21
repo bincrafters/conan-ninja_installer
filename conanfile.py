@@ -7,7 +7,7 @@ from conans import ConanFile, tools, AutoToolsBuildEnvironment
 
 class NinjaConan(ConanFile):
     name = "ninja_installer"
-    version = "1.8.2"
+    version = "1.8.2_kitware"
     description = "Ninja is a small build system with a focus on speed"
     license = "Apache-2.0"
     url = "https://github.com/bincrafters/conan-ninja_installer"
