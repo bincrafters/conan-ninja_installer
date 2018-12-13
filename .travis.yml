@@ -31,7 +31,8 @@ cache:
       - $HOME/Library/Caches/Homebrew
       - $HOME/Library/Caches/pip
       - $HOME/.cache/pip
-      - $HOME/.cache/pyenv
+      - $HOME/.pyenv
+      - $HOME/.pyenv_cache
       - /usr/local/Homebrew
 
 before_cache:
