@@ -4,22 +4,22 @@ set -e
 set -x
 
 if [[ "$(uname -s)" == 'Darwin' ]]; then
-    brew update || brew update
-    brew outdated pyenv || brew upgrade pyenv
-    brew install pyenv-virtualenv
-    brew install cmake || true
+    time brew update || time brew update
+    time brew outdated pyenv || time brew upgrade pyenv
+    time brew install pyenv-virtualenv
+    time brew install cmake || true
 
     if which pyenv > /dev/null; then
         eval "$(pyenv init -)"
     fi
 
-    pyenv install 3.7.1
-    pyenv virtualenv 3.7.1 conan
-    pyenv rehash
-    pyenv activate conan
+    time pyenv install 3.7.1
+    time pyenv virtualenv 3.7.1 conan
+    time pyenv rehash
+    time pyenv activate conan
 fi
 
-pip install conan --upgrade
-pip install conan_package_tools bincrafters_package_tools
+time pip install conan --upgrade
+time pip install conan_package_tools bincrafters_package_tools
 
 conan user
