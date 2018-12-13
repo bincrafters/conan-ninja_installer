@@ -16,7 +16,7 @@ if [[ "$(uname -s)" == 'Darwin' ]]; then
         eval "$(pyenv init -)"
     fi
 
-    time pyenv install 3.7.1
+    time pyenv install 3.7.1 -f
     time pyenv virtualenv 3.7.1 conan
     time pyenv rehash
     time pyenv activate conan
