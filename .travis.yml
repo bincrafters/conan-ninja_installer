@@ -1,8 +1,8 @@
 linux: &linux
    os: linux
-   sudo: required
+   dist: xenial
    language: python
-   python: "3.6"
+   python: "3.7"
    services:
      - docker
 osx: &osx
@@ -11,9 +11,9 @@ osx: &osx
 matrix:
    include:
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=conanio/gcc5 ARCH=x86
+        env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=conanio/gcc7-centos6-x86 ARCH=x86
       - <<: *linux
-        env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=conanio/gcc5 ARCH=x86_64
+        env: CONAN_GCC_VERSIONS=5 CONAN_DOCKER_IMAGE=conanio/gcc7-centos6 ARCH=x86_64
       - <<: *osx
         osx_image: xcode9
         env: CONAN_APPLE_CLANG_VERSIONS=9.0 ARCH=x86_64
@@ -25,3 +25,15 @@ install:
 script:
   - chmod +x .ci/run.sh
   - ./.ci/run.sh
+
+cache:
+   directories:
+      - $HOME/Library/Caches/Homebrew
+      - $HOME/Library/Caches/pip
+      - $HOME/.cache/pip
+      - $HOME/.pyenv
+      - $HOME/.pyenv_cache
+      - /usr/local/Homebrew
+
+before_cache:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew cleanup && rm -rf /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask/homebrew-cask; fi
