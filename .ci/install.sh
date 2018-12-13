@@ -4,6 +4,7 @@ set -e
 set -x
 
 if [[ "$(uname -s)" == 'Darwin' ]]; then
+    rm -rf /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask/homebrew-cask || true
     time brew update || time brew update
     time brew outdated pyenv || time brew upgrade pyenv
     time brew install pyenv-virtualenv
