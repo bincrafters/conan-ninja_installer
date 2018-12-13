@@ -32,6 +32,7 @@ cache:
       - $HOME/Library/Caches/pip
       - $HOME/.cache/pip
       - $HOME/.cache/pyenv
+      - /usr/local/Homebrew
 
 before_cache:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew cleanup; fi
