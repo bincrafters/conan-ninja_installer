@@ -36,4 +36,4 @@ cache:
       - /usr/local/Homebrew
 
 before_cache:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew cleanupi && rm -rf /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask/homebrew-cask; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew cleanup && rm -rf /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask/homebrew-cask; fi
