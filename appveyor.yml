@@ -10,12 +10,15 @@ environment:
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
           CONAN_VISUAL_VERSIONS: 15
           ARCH: x86_64
-          
+
 install:
   - set PATH=%PATH%;%PYTHON%/Scripts/
   - pip.exe install conan --upgrade
   - pip.exe install conan_package_tools bincrafters_package_tools
   - conan user # It creates the conan data directory
 
+cache:
+  - '%LOCALAPPDATA%\pip\Cache -> appveyor.yml'
+
 test_script:
-  - python build.py
+    - python build.py
