@@ -66,4 +66,4 @@ class NinjaConan(ConanFile):
         self.env_info.CONAN_CMAKE_GENERATOR = "Ninja"
 
     def package_id(self):
-        self.info.settings.compiler = "Any"
+        del self.info.settings.compiler
