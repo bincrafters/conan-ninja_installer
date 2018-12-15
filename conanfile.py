@@ -34,9 +34,10 @@ class NinjaConan(ConanFile):
                     cxx += " -m32"
                 elif self.settings.arch_build == "x86_64":
                     cxx += " -m64"
-            os.environ["CXX"] = cxx
             env_build = AutoToolsBuildEnvironment(self)
-            with tools.environment_append(env_build.vars):
+            env_build_vars = env_build.vars
+            env_build_vars.update({'CXX': cxx})
+            with tools.environment_append(env_build_vars):
                 self.run("python configure.py --bootstrap")
 
     def source(self):
