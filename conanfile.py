@@ -14,11 +14,7 @@ class NinjaConan(ConanFile):
     homepage = "https://github.com/ninja-build/ninja"
     author = "Bincrafters <bincrafters@gmail.com>"
     export = ["LICENSE.md"]
-    settings = {
-        "os_build": ["Windows", "Linux", "Macos"],
-        "arch_build": ["x86", "x86_64"],
-        "compiler": None
-    }
+    settings = "os_build", "arch_build", "compiler"
     _source_subfolder = "source_subfolder"
 
     def _build_vs(self):
