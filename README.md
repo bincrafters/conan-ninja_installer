@@ -2,7 +2,7 @@
 
 | Bintray | Windows | Linux & macOS | 
 |:--------:|:---------:|:-----------------:|
-|[![Download](https://api.bintray.com/packages/bincrafters/public-conan/ninja_installer%3Abincrafters/images/download.svg) ](https://bintray.com/bincrafters/public-conan/ninja_installer%3Abincrafters/_latestVersion)|[![Build status](https://ci.appveyor.com/api/projects/status/github/bincrafters/conan-ninja_installer?svg=true)](https://ci.appveyor.com/project/bincrafters/conan-ninja_installer)|[![Build Status](https://travis-ci.org/bincrafters/conan-ninja_installer.svg)](https://travis-ci.org/bincrafters/conan-ninja_installer)|
+|[![Download](https://api.bintray.com/packages/bincrafters/public-conan/ninja_installer%3Abincrafters/images/download.svg) ](https://bintray.com/bincrafters/public-conan/ninja_installer%3Abincrafters/_latestVersion)|[![Build status](https://ci.appveyor.com/api/projects/status/github/bincrafters/conan-ninja_installer?svg=true)](https://ci.appveyor.com/project/bincrafters/conan-ninja_installer)|[![Build Status](https://travis-ci.com/bincrafters/conan-ninja_installer.svg)](https://travis-ci.com/bincrafters/conan-ninja_installer)|
 
 ## Conan.io Information
 
